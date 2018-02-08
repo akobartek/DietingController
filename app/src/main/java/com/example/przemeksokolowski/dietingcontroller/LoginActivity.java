@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
                         Log.e("loginAttempt", t.getMessage());
                         Log.e("loginAttempt", "Unable to submit post to API.");
-                        ApiUtils.noApiConnectionDialog(LoginActivity.this, getParent());
+                        ApiUtils.noApiConnectionDialog(LoginActivity.this);
                     }
                 });
             }

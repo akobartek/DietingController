@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.przemeksokolowski.dietingcontroller.model.ChoosenProducts;
-import com.example.przemeksokolowski.dietingcontroller.model.Product;
 import com.example.przemeksokolowski.dietingcontroller.model.ProductListItem;
 
 import java.util.ArrayList;

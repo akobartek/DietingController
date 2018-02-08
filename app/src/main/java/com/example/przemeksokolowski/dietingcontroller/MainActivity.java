@@ -1,8 +1,6 @@
 package com.example.przemeksokolowski.dietingcontroller;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +16,6 @@ import com.example.przemeksokolowski.dietingcontroller.data.Preferences;
 import com.example.przemeksokolowski.dietingcontroller.data.WebAPI;
 import com.example.przemeksokolowski.dietingcontroller.model.ChoosenProductsUsedToGetMeals;
 import com.example.przemeksokolowski.dietingcontroller.model.MealWithChoosenProducts;
-import com.example.przemeksokolowski.dietingcontroller.model.User;
 import com.example.przemeksokolowski.dietingcontroller.model.Workout;
 import com.github.clans.fab.FloatingActionButton;
 
@@ -61,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         showLoading();
 
         mWebAPI = ApiUtils.getWebApi();
-        mWebAPI.getUserById(mLoggedUserId).enqueue(userCallback);
         mWebAPI.getMealsByUserIdAndTime(mLoggedUserId, mCurrentDay).enqueue(mealsCallback);
 
         FloatingActionButton newExerciseFab = findViewById(R.id.new_exercise_fab);
@@ -139,14 +135,14 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 Log.d("MealsCallback", "Code: " + response.code() + " Message: " + response.message());
-                ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+                ApiUtils.noApiConnectionDialog(MainActivity.this);
             }
         }
 
         @Override
         public void onFailure(@NonNull Call<List<MealWithChoosenProducts>> call, @NonNull Throwable t) {
             t.printStackTrace();
-            ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+            ApiUtils.noApiConnectionDialog(MainActivity.this);
         }
     };
 
@@ -157,47 +153,21 @@ public class MainActivity extends AppCompatActivity {
                 List<Workout> workouts = response.body();
 
                 for (Workout workout : workouts) {
-                    //TODO(4) w zależności od api - odejmowanie aktywności od mCurrentCalories
+                    mCurrentCalories -= (workout.getTime() / 60) * workout.getWorkoutType().getBurnedCalories();
                 }
 
                 showDataView();
                 mProgressView.setValueAnimated(mCurrentCalories / mLimit, 1800);
             } else {
                 Log.d("ActivitiesCallback", "Code: " + response.code() + " Message: " + response.message());
-                ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+                ApiUtils.noApiConnectionDialog(MainActivity.this);
             }
         }
 
         @Override
         public void onFailure(@NonNull Call<List<Workout>> call, @NonNull Throwable t) {
             t.printStackTrace();
-            ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
-        }
-    };
-
-    private Callback<User> userCallback = new Callback<User>() {
-        @Override
-        public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-            if (response.isSuccessful()) {
-                User user = response.body();
-
-                if (user != null && user.getDailyLimit() != null) {
-                    mLimit = user.getDailyLimit();
-                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putInt(getString(R.string.prefs_calories_key), mLimit);
-                    editor.apply();
-                }
-            } else {
-                Log.d("ActivitiesCallback", "Code: " + response.code() + " Message: " + response.message());
-                ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
-            }
-        }
-
-        @Override
-        public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-            t.printStackTrace();
-            ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+            ApiUtils.noApiConnectionDialog(MainActivity.this);
         }
     };
 }

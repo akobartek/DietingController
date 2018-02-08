@@ -34,7 +34,7 @@ public class ApiUtils {
         return retrofit.create(WebAPI.class);
     }
 
-    public static void noApiConnectionDialog(final Context context, final Activity activity) {
+    public static void noApiConnectionDialog(final Context context) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setTitle("Błąd połączenia");
 

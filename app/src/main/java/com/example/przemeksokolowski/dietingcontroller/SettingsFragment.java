@@ -46,9 +46,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             if (!(preference instanceof CheckBoxPreference)) {
                 preference.setSummary(sharedPreferences.getString(preference.getKey(), ""));
             }
-            if (preference.getKey().equals(getString(R.string.prefs_calories_key))) {
-
-            }
         }
     }
 }

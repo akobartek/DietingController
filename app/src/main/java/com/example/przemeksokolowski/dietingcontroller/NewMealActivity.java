@@ -2,7 +2,6 @@ package com.example.przemeksokolowski.dietingcontroller;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -119,13 +118,13 @@ public class NewMealActivity extends AppCompatActivity implements AdapterView.On
                     }
                 } else {
                     Log.d("getProductsFromAPI", "Code: " + response.code() + " Message: " + response.message());
-                    ApiUtils.noApiConnectionDialog(NewMealActivity.this, getParent());
+                    ApiUtils.noApiConnectionDialog(NewMealActivity.this);
                 }
             }
 
             @Override public void onFailure(@NonNull Call<List<Product>> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                ApiUtils.noApiConnectionDialog(NewMealActivity.this, getParent());
+                ApiUtils.noApiConnectionDialog(NewMealActivity.this);
             }
         });
     }
@@ -219,7 +218,7 @@ public class NewMealActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onFailure(@NonNull Call<Meal> call, @NonNull Throwable t) {
                 Log.e("postMealToAPI", "Unable to submit post to API.");
-                ApiUtils.noApiConnectionDialog(NewMealActivity.this, getParent());
+                ApiUtils.noApiConnectionDialog(NewMealActivity.this);
             }
         });
     }
@@ -236,7 +235,7 @@ public class NewMealActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Log.e("postMealToAPI", "Unable to submit post to API.");
-                ApiUtils.noApiConnectionDialog(NewMealActivity.this, getParent());
+                ApiUtils.noApiConnectionDialog(NewMealActivity.this);
             }
         });
     }

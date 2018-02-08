@@ -145,8 +145,10 @@ public interface WebAPI {
     @GET("activities/{id}")
     Call<Workout> getActivityById(@Path("id") int workoutId);
 
+    @FormUrlEncoded
     @POST("activities")
-    Call<Workout> createActivity(@Body Workout workout);
+    Call<Workout> createActivity(@Field("activity_type_id") int activityTypeId,
+                                         @Field("time") int time, @Field("user_id") int userId);
 
     @DELETE("activities/{id}")
     Call<ResponseBody> deleteActivityById(@Path("id") int workoutId);

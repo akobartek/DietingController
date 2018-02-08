@@ -148,14 +148,14 @@ public class SummaryActivity extends AppCompatActivity {
 
             } else {
                 Log.d("MealsCallback", "Code: " + response.code() + " Message: " + response.message());
-                ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+                ApiUtils.noApiConnectionDialog(SummaryActivity.this);
             }
         }
 
         @Override
         public void onFailure(@NonNull Call<List<MealWithChoosenProducts>> call, @NonNull Throwable t) {
             t.printStackTrace();
-            ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+            ApiUtils.noApiConnectionDialog(SummaryActivity.this);
         }
     };
 
@@ -166,7 +166,7 @@ public class SummaryActivity extends AppCompatActivity {
                 List<Workout> workouts = response.body();
 
                 for (Workout workout : workouts) {
-                    //TODO(5) w zależności od api - dodanie aktywności
+                    aktywnosc += (workout.getTime() / 60) * workout.getWorkoutType().getBurnedCalories();
                 }
 
                 int bilans = sniadanie + drugieSniadanie + obiad + podwieczorek + kolacja - aktywnosc;
@@ -182,14 +182,14 @@ public class SummaryActivity extends AppCompatActivity {
                 showDataView();
             } else {
                 Log.d("ActivitiesCallback", "Code: " + response.code() + " Message: " + response.message());
-                ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+                ApiUtils.noApiConnectionDialog(SummaryActivity.this);
             }
         }
 
         @Override
         public void onFailure(@NonNull Call<List<Workout>> call, @NonNull Throwable t) {
             t.printStackTrace();
-            ApiUtils.noApiConnectionDialog(getApplicationContext(), getParent());
+            ApiUtils.noApiConnectionDialog(SummaryActivity.this);
         }
     };
 }

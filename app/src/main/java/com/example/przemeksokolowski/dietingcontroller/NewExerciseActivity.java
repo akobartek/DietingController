@@ -1,8 +1,8 @@
 package com.example.przemeksokolowski.dietingcontroller;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,16 +10,32 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
-public class NewExerciseActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import com.example.przemeksokolowski.dietingcontroller.data.ApiUtils;
+import com.example.przemeksokolowski.dietingcontroller.model.Workout;
+import com.example.przemeksokolowski.dietingcontroller.model.WorkoutType;
 
-    private String mSelectedExercise;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class NewExerciseActivity extends AppCompatActivity {
+
+    private int mLoggedUserId;
+    private ArrayList<WorkoutType> workoutTypes;
+
     private ProgressBar mLoadingIndicator;
     private ConstraintLayout mConstraintLayout;
+    private Button mAddExerciseBtn;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,30 +46,37 @@ public class NewExerciseActivity extends AppCompatActivity implements AdapterVie
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mLoggedUserId = ApiUtils.getUserIdFromIntent(getIntent());
+        workoutTypes = new ArrayList<>();
+
         mConstraintLayout = findViewById(R.id.exercise_constraint);
         mLoadingIndicator = findViewById(R.id.pb_loading_exercises_indicator);
         showLoading();
 
-        // TODO(8) spinner i podłączenie do niego danych z API (przykład) -> potrzeba danych o activity z API
-        // TODO(9) aktualizacja napisu (sprawdzanie wpisanych cyfr?)
-        // TODO(10) Zapis do API
-/*
-        Spinner spinner = (Spinner) findViewById(R.id.exercise_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.sport_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        getActivityTypesFromAPI();
 
-        spinner.setOnItemSelectedListener(this);
-        */
+        final EditText timeEditText = findViewById(R.id.limit_kcal_edit_text);
+
+        mAddExerciseBtn = findViewById(R.id.add_exercise_button);
+        mAddExerciseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (timeEditText.getText().toString().trim().equals(""))
+                    postActivityToAPI(timeEditText.getText().toString().trim());
+                else
+                    timeEditText.setError("Pole nie może być puste!");
+            }
+        });
     }
 
     private void showLoading() {
         mConstraintLayout.setVisibility(View.INVISIBLE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
+    }
+
+    private void showDataView() {
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mConstraintLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -79,12 +102,56 @@ public class NewExerciseActivity extends AppCompatActivity implements AdapterVie
         }
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        mSelectedExercise = (String) parent.getItemAtPosition(pos);
-        Log.v("NewExerciseActivity", mSelectedExercise);
+    private void getActivityTypesFromAPI() {
+        ApiUtils.getWebApi().getAllActivityTypes().enqueue(new Callback<List<WorkoutType>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<WorkoutType>> call, @NonNull Response<List<WorkoutType>> response) {
+                if (response.isSuccessful()) {
+                    workoutTypes.addAll(response.body());
+
+                    final ArrayList<String> workoutNames = new ArrayList<>();
+                    for (WorkoutType workoutType : workoutTypes)
+                        workoutNames.add(workoutType.getName());
+
+                    spinner = findViewById(R.id.exercise_spinner);
+                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
+                            NewExerciseActivity.this, android.R.layout.simple_spinner_item, workoutNames);
+                    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(spinnerAdapter);
+
+                    mAddExerciseBtn.setEnabled(true);
+                    showDataView();
+
+                    Log.i("postMealToAPI", "POST submitted to API." + response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<WorkoutType>> call, @NonNull Throwable t) {
+                Log.e("postMealToAPI", "Unable to submit post to API.");
+                ApiUtils.noApiConnectionDialog(NewExerciseActivity.this);
+            }
+        });
     }
 
-    public void onNothingSelected(AdapterView<?> parent) {
-        mSelectedExercise = "Bieganie";
+    private void postActivityToAPI(String time) {
+        int acitivityTypeId = workoutTypes.get(spinner.getSelectedItemPosition()).getId();
+
+        ApiUtils.getWebApi().createActivity(acitivityTypeId, Integer.parseInt(time), mLoggedUserId)
+                .enqueue(new Callback<Workout>() {
+            @Override
+            public void onResponse(@NonNull Call<Workout> call, @NonNull Response<Workout> response) {
+                if (response.isSuccessful()) {
+                    Log.i("postActivityToAPI", "POST submitted to API." + response.body().toString());
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Workout> call, @NonNull Throwable t) {
+                Log.e("postActivityToAPI", "Unable to submit post to API.");
+                ApiUtils.noApiConnectionDialog(NewExerciseActivity.this);
+            }
+        });
     }
 }
