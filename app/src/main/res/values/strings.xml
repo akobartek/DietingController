@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Dieting Controller</string>
+    <string name="new_exercise_label">Nowe ćwiczenie</string>
+    <string name="new_meal_label">Nowy posiłek</string>
+    <string name="add_meal">Dodaj posiłek</string>
+    <string name="sum">Suma</string>
+    <string name="add_product">Dodaj produkt</string>
+    <string name="number_of_calories">%d KCAL</string>
+    <string name="prefs_calories_default">2500</string>
+    <string name="prefs_calories_key">calories</string>
+    <string name="prefs_calories_title">Dzienny Limit Kalorii</string>
+    <string name="prefs_nightmode_key">night_mode</string>
+    <string name="prefs_nightmode_title">Tryb nocny</string>
+    <string name="prefs_nightmode_true">Włączony</string>
+    <string name="prefs_nightmode_false">Wyłączony</string>
+    <string name="bilans_dnia">BILANS DNIA: %d KCAL</string>
+    <string name="bilans_sniadanie">Śniadanie - %d CAL</string>
+    <string name="bilans_drugie_sniadanie">Drugie śniadanie - %d CAL</string>
+    <string name="bilans_obiad">Obiad - %d CAL</string>
+    <string name="bilans_podwieczorek">Podwieczorek - %d CAL</string>
+    <string name="bilans_kolacja">Kolacja - %d CAL</string>
+    <string name="bilans_aktywnosc">Aktywność - %d CAL</string>
+    <string name="minutes">Minut</string>
+    <string name="length">Długość</string>
+    <string name="duration">Czas trwania</string>
+    <string name="add_exercise">Dodaj ćwiczenie</string>
+    <string name="burned">Spalono</string>
+    <string name="history">Historia</string>
+    <string name="login">login</string>
+    <string name="password">hasło</string>
+    <string name="settings">Ustawienia</string>
+    <string name="weight">Waga</string>
+    <string name="calories">Kalorie</string>
+    <string name="name">Nazwa</string>
+</resources>

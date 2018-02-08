@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="meal_array">
+        <item>Śniadanie</item>
+        <item>Drugie śniadanie</item>
+        <item>Obiad</item>
+        <item>Podwieczorek</item>
+        <item>Kolacja</item>
+    </string-array>
+</resources>

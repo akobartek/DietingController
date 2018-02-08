@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.przemeksokolowski.dietingcontroller.NewMealActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/meal_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/meal_spinner"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/add_meal_button"
+            android:layout_width="140dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="12dp"
+            android:background="#3F51B5"
+            android:enabled="false"
+            android:text="@string/add_meal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kcal_text" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/products_recyclerview"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_product_button"
+            tools:listitem="@layout/product_list_item" />
+
+        <TextView
+            android:id="@+id/sum_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/sum"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/products_recyclerview" />
+
+        <TextView
+            android:id="@+id/kcal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/number_of_calories"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sum_text" />
+
+        <Button
+            android:id="@+id/add_product_button"
+            android:layout_width="140dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="20dp"
+            android:background="#3F51B5"
+            android:enabled="false"
+            android:text="@string/add_product"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/meal_spinner" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
