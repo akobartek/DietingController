@@ -51,13 +51,14 @@ public class LoginActivity extends AppCompatActivity {
                                         LoginActivity.this, MainActivity.class, userId));
                             }
 
-                            Log.i("postMealToAPI", "POST submitted to API." + response.body().toString());
+                            Log.i("loginAttempt", "POST submitted to API." + response.body().toString());
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
-                        Log.e("postMealToAPI", "Unable to submit post to API.");
+                        Log.e("loginAttempt", t.getMessage());
+                        Log.e("loginAttempt", "Unable to submit post to API.");
                         ApiUtils.noApiConnectionDialog(LoginActivity.this, getParent());
                     }
                 });
