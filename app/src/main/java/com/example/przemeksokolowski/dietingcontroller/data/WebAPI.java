@@ -24,7 +24,7 @@ import retrofit2.http.Path;
 
 public interface WebAPI {
 
-    String BASE_URL = "http://localhost:3000/";
+    String BASE_URL = "http://10.0.2.2:3000/";
 
 
     /*
