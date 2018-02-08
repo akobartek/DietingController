@@ -44,7 +44,6 @@ public class ApiUtils {
                 .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                        activity.finish();
                         activity.startActivity(activity.getIntent());
                     }
                 })
@@ -52,7 +51,6 @@ public class ApiUtils {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         activity.finish();
-                        activity.startActivity(new Intent(context, LoginActivity.class));
                     }
                 });
 
