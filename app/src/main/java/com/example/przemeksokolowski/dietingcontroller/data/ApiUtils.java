@@ -39,12 +39,11 @@ public class ApiUtils {
         alertDialogBuilder.setTitle("Błąd połączenia");
 
         alertDialogBuilder
-                .setMessage("Chcesz spróbować połączyć się ponownie?")
                 .setCancelable(false)
                 .setPositiveButton("Cofnij", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                        activity.onBackPressed();
+                        context.startActivity(new Intent(context, LoginActivity.class));
                     }
                 });
 
