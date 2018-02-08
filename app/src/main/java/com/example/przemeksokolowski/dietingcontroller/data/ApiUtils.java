@@ -41,16 +41,10 @@ public class ApiUtils {
         alertDialogBuilder
                 .setMessage("Chcesz spróbować połączyć się ponownie?")
                 .setCancelable(false)
-                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Cofnij", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                        activity.startActivity(activity.getIntent());
-                    }
-                })
-                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                        activity.finish();
+                        activity.onBackPressed();
                     }
                 });
 
