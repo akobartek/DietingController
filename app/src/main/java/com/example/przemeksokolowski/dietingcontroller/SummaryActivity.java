@@ -122,25 +122,26 @@ public class SummaryActivity extends AppCompatActivity {
 
                 for (MealWithChoosenProducts meal : meals) {
                     for (ChoosenProductsUsedToGetMeals product : meal.getChoosenProducts()) {
-                        switch (meal.getMealType()) {
-                            case 1:
-                                sniadanie += (product.getWeight() * product.getProduct().getCalories() / 100);
-                                break;
-                            case 2:
-                                drugieSniadanie += (product.getWeight() * product.getProduct().getCalories() / 100);
-                                break;
-                            case 3:
-                                obiad += (product.getWeight() * product.getProduct().getCalories() / 100);
-                                break;
-                            case 4:
-                                podwieczorek += (product.getWeight() * product.getProduct().getCalories() / 100);
-                                break;
-                            case 5:
-                                kolacja += (product.getWeight() * product.getProduct().getCalories() / 100);
-                                break;
-                            default:
-                                break;
-                        }
+                        if (product != null)
+                            switch (meal.getMealType()) {
+                                case 1:
+                                    sniadanie += (product.getWeight() * product.getProduct().getCalories() / 100);
+                                    break;
+                                case 2:
+                                    drugieSniadanie += (product.getWeight() * product.getProduct().getCalories() / 100);
+                                    break;
+                                case 3:
+                                    obiad += (product.getWeight() * product.getProduct().getCalories() / 100);
+                                    break;
+                                case 4:
+                                    podwieczorek += (product.getWeight() * product.getProduct().getCalories() / 100);
+                                    break;
+                                case 5:
+                                    kolacja += (product.getWeight() * product.getProduct().getCalories() / 100);
+                                    break;
+                                default:
+                                    break;
+                            }
                     }
                 }
 
@@ -166,7 +167,8 @@ public class SummaryActivity extends AppCompatActivity {
                 List<Workout> workouts = response.body();
 
                 for (Workout workout : workouts) {
-                    aktywnosc += (workout.getTime() / 60) * workout.getWorkoutType().getBurnedCalories();
+                    if (workout != null)
+                        aktywnosc += (workout.getTime() / 60) * workout.getWorkoutType().getBurnedCalories();
                 }
 
                 int bilans = sniadanie + drugieSniadanie + obiad + podwieczorek + kolacja - aktywnosc;

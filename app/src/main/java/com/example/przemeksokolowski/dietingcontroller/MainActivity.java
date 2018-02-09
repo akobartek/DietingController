@@ -131,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
                 for (MealWithChoosenProducts meal : meals) {
                     for (ChoosenProductsUsedToGetMeals product : meal.getChoosenProducts()) {
-                        mCurrentCalories += (product.getWeight() * product.getProduct().getCalories() / 100);
+                        if (product != null)
+                            mCurrentCalories += (product.getWeight() * product.getProduct().getCalories() / 100);
                     }
                 }
 
@@ -157,7 +158,8 @@ public class MainActivity extends AppCompatActivity {
                 List<Workout> workouts = response.body();
 
                 for (Workout workout : workouts) {
-                    mCurrentCalories -= (workout.getTime() / 60) * workout.getWorkoutType().getBurnedCalories();
+                    if (workout != null)
+                        mCurrentCalories -= (workout.getTime() / 60) * workout.getWorkoutType().getBurnedCalories();
                 }
 
                 showDataView();
