@@ -56,7 +56,7 @@ public interface WebAPI {
 
     @FormUrlEncoded
     @POST("products")
-    Call<Product> createProduct(@Field("name") String name, @Field("calories") int calories);
+    Call<Product> createProduct(@Field("product[name]") String name, @Field("product[calories]") int calories);
 
     @DELETE("products/{id}")
     Call<ResponseBody> deleteProductById(@Path("id") int productId);
@@ -73,7 +73,7 @@ public interface WebAPI {
 
     @FormUrlEncoded
     @POST("meals")
-    Call<Meal> createMeal(@Field("user_id") int userId, @Field("meal_type") int mealType);
+    Call<Meal> createMeal(@Field("meal[user_id]") int userId, @Field("meal[meal_type]") int mealType);
 
     @DELETE("meals/{id}")
     Call<ResponseBody> deleteMealById(@Path("id") int mealId);
@@ -147,8 +147,8 @@ public interface WebAPI {
 
     @FormUrlEncoded
     @POST("activities")
-    Call<Workout> createActivity(@Field("activity_type_id") int activityTypeId,
-                                         @Field("time") int time, @Field("user_id") int userId);
+    Call<Workout> createActivity(@Field("activity[activity_type_id]") int activityTypeId,
+                                         @Field("activity[time]") int time, @Field("activity[user_id]") int userId);
 
     @DELETE("activities/{id}")
     Call<ResponseBody> deleteActivityById(@Path("id") int workoutId);
