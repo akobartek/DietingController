@@ -21,7 +21,6 @@ import com.example.przemeksokolowski.dietingcontroller.model.Workout;
 import com.example.przemeksokolowski.dietingcontroller.model.WorkoutType;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -115,7 +114,7 @@ public class NewExerciseActivity extends AppCompatActivity {
                     for (WorkoutType workoutType : workoutTypes)
                         workoutNames.add(workoutType.getName());
 
-                    workoutNames.removeAll(Collections.singleton(null));
+                    while (workoutNames.remove(null));
 
                     spinner = findViewById(R.id.exercise_spinner);
                     ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
