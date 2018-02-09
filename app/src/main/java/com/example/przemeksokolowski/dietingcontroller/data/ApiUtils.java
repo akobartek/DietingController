@@ -62,6 +62,7 @@ public class ApiUtils {
     }
 
     public static int getUserIdFromIntent(Intent intent) {
-        return intent.getExtras().getInt("logged_user_id");
+//        return intent.getExtras().getInt("logged_user_id");
+        return 5;
     }
 }
