@@ -46,12 +46,6 @@ public class MainActivity extends AppCompatActivity {
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mLoggedUserId = ApiUtils.getUserIdFromIntent(getIntent());
-
-        mLimit = Preferences.getDailyLimit(MainActivity.this);
-//        mCurrentDay = Calendar.YEAR + "-" + Calendar.MONTH + "-" + Calendar.DAY_OF_MONTH;
-        mCurrentDay = "2018-02-09";
-
         mConstraintLayout = findViewById(R.id.main_constraint);
         mLoadingIndicator = findViewById(R.id.pb_loading_main_indicator);
         mProgressView = findViewById(R.id.progressview);
@@ -69,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
         showLoading();
 
+        mLimit = Preferences.getDailyLimit(MainActivity.this);
+        mLoggedUserId = ApiUtils.getUserIdFromIntent(getIntent());
+//        mCurrentDay = Calendar.YEAR + "-" + Calendar.MONTH + "-" + Calendar.DAY_OF_MONTH;
+        mCurrentDay = "2018-02-09";
         mWebAPI = ApiUtils.getWebApi();
         mWebAPI.getMealsByUserIdAndTime(mLoggedUserId, mCurrentDay).enqueue(mealsCallback);
     }
