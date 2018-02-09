@@ -210,8 +210,7 @@ public class NewMealActivity extends AppCompatActivity implements AdapterView.On
                     for (ProductListItem product : choosenProducts) {
                         postChoosenProductToAPI(new ChoosenProducts(product.getId(), mealType, product.getWeight()));
                     }
-
-                    Log.i("postMealToAPI", "POST submitted to API." + response.body().toString());
+                    finish();
                 }
             }
 
@@ -228,7 +227,7 @@ public class NewMealActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Log.i("postMealToAPI", "POST submitted to API." + response.body().toString());
+                    Log.i("postMealToAPI", "POST submitted to API.");
                 }
             }
 
