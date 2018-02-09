@@ -21,7 +21,6 @@ import com.example.przemeksokolowski.dietingcontroller.model.Workout;
 import com.example.przemeksokolowski.dietingcontroller.model.WorkoutType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,6 +36,7 @@ public class NewExerciseActivity extends AppCompatActivity {
     private ConstraintLayout mConstraintLayout;
     private Button mAddExerciseBtn;
     private Spinner spinner;
+    private EditText timeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +56,15 @@ public class NewExerciseActivity extends AppCompatActivity {
 
         getActivityTypesFromAPI();
 
-        final EditText timeEditText = findViewById(R.id.limit_kcal_edit_text);
+        timeEditText = findViewById(R.id.limit_kcal_edit_text);
 
         mAddExerciseBtn = findViewById(R.id.add_exercise_button);
         mAddExerciseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (timeEditText.getText().toString().trim().equals(""))
-                    postActivityToAPI(timeEditText.getText().toString().trim());
+                String timeString = timeEditText.getText().toString();
+                if (!timeString.equals(""))
+                    postActivityToAPI(timeString);
                 else
                     timeEditText.setError("Pole nie może być puste!");
             }

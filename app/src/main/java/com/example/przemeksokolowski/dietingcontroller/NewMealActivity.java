@@ -163,6 +163,8 @@ public class NewMealActivity extends AppCompatActivity implements AdapterView.On
         for (Product product : products)
             productNames.add(product.getName());
 
+        while (productNames.remove(null));
+
         final Spinner spinner = view.findViewById(R.id.select_product_spinner);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, productNames);
