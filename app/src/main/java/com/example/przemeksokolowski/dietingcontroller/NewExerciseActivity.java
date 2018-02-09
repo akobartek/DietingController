@@ -121,8 +121,6 @@ public class NewExerciseActivity extends AppCompatActivity {
 
                     mAddExerciseBtn.setEnabled(true);
                     showDataView();
-
-                    Log.i("postMealToAPI", "POST submitted to API." + response.body().toString());
                 }
             }
 
@@ -142,7 +140,6 @@ public class NewExerciseActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<Workout> call, @NonNull Response<Workout> response) {
                 if (response.isSuccessful()) {
-                    Log.i("postActivityToAPI", "POST submitted to API." + response.body().toString());
                     finish();
                 }
             }
