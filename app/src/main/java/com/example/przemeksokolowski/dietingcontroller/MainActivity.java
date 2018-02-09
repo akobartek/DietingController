@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         mLoggedUserId = ApiUtils.getUserIdFromIntent(getIntent());
 
         mLimit = Preferences.getDailyLimit(MainActivity.this);
-        mCurrentDay = Calendar.YEAR + "-" + Calendar.MONTH + "-" + Calendar.DAY_OF_MONTH;
+//        mCurrentDay = Calendar.YEAR + "-" + Calendar.MONTH + "-" + Calendar.DAY_OF_MONTH;
+        mCurrentDay = "2018-02-09";
 
         mConstraintLayout = findViewById(R.id.main_constraint);
         mLoadingIndicator = findViewById(R.id.pb_loading_main_indicator);
