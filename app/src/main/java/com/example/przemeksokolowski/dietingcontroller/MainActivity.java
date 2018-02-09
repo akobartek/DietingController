@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_history:
-                startActivity(new Intent(MainActivity.this, HistoryActivity.class));
+                startActivity(ApiUtils.createIntentWithLoggedUserId(MainActivity.this, HistoryActivity.class, mLoggedUserId));
                 return true;
             case R.id.action_settings:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                startActivity(ApiUtils.createIntentWithLoggedUserId(MainActivity.this, SettingsActivity.class, mLoggedUserId));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
