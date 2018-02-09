@@ -42,8 +42,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
                         if (response.isSuccessful()) {
-//                            int userId = response.body().getId();
-                            int userId = 1;
+                            int userId = response.body().getId();
+//                            int userId = 1;
                             if (userId == -1) {
                                 loginField.setError("Niepoprawne dane!");
                                 passwordField.setError("Niepoprawne dane!");
