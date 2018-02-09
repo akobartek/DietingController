@@ -57,7 +57,7 @@ public class ApiUtils {
 
     public static Intent createIntentWithLoggedUserId(Context context, Class clas, int id) {
         Intent intent = new Intent(context, clas);
-        intent.putExtra("logged_user_id", id);
+        intent.putExtra("logged_user_id", 5);
         return intent;
     }
 

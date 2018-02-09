@@ -21,6 +21,8 @@ import com.example.przemeksokolowski.dietingcontroller.model.Workout;
 import com.example.przemeksokolowski.dietingcontroller.model.WorkoutType;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -112,6 +114,8 @@ public class NewExerciseActivity extends AppCompatActivity {
                     final ArrayList<String> workoutNames = new ArrayList<>();
                     for (WorkoutType workoutType : workoutTypes)
                         workoutNames.add(workoutType.getName());
+
+                    workoutNames.removeAll(Collections.singleton(null));
 
                     spinner = findViewById(R.id.exercise_spinner);
                     ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
