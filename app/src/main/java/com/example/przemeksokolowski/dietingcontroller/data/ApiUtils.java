@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 
 import com.example.przemeksokolowski.dietingcontroller.LoginActivity;
 import com.google.gson.Gson;
@@ -31,6 +32,9 @@ public class ApiUtils {
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
+
+        Log.d("RETROFIT", retrofit.toString());
+
         return retrofit.create(WebAPI.class);
     }
 

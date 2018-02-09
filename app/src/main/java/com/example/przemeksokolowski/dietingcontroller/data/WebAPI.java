@@ -32,7 +32,7 @@ public interface WebAPI {
      */
     @FormUrlEncoded
     @POST("login")
-    Call<LoginData> login(@Field("login") String login, @Field("password") String password);
+    Call<LoginData> login(@Field("session[login]") String login, @Field("session[password]") String password);
 
     @DELETE("logout")
     Call<ResponseBody> delete();
