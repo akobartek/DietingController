@@ -55,16 +55,21 @@ public class MainActivity extends AppCompatActivity {
         mLoadingIndicator = findViewById(R.id.pb_loading_main_indicator);
         mProgressView = findViewById(R.id.progressview);
 
-        showLoading();
-
-        mWebAPI = ApiUtils.getWebApi();
-        mWebAPI.getMealsByUserIdAndTime(mLoggedUserId, mCurrentDay).enqueue(mealsCallback);
-
         FloatingActionButton newExerciseFab = findViewById(R.id.new_exercise_fab);
         newExerciseFab.setOnClickListener(clickListener);
         FloatingActionButton newMealFab = findViewById(R.id.new_meal_fab);
         newMealFab.setOnClickListener(clickListener);
         mProgressView.setOnClickListener(clickListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        showLoading();
+
+        mWebAPI = ApiUtils.getWebApi();
+        mWebAPI.getMealsByUserIdAndTime(mLoggedUserId, mCurrentDay).enqueue(mealsCallback);
     }
 
     private void showLoading() {
