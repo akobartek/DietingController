@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class Product {
 
-    @SerializedName("product[id]")
+    @SerializedName("id")
     @Expose
     private int id;
 
-    @SerializedName("product[name]")
+    @SerializedName("name")
     @Expose
     private String name;
 
-    @SerializedName("product[calories]")
+    @SerializedName("calories")
     @Expose
     private int calories;
 
-    @SerializedName("product[verified]")
+    @SerializedName("verified")
     @Expose
     private boolean verified;
 
