@@ -28,7 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Intent openSummaryIntent = ApiUtils.createIntentWithLoggedUserId(
                         HistoryActivity.this, SummaryActivity.class, ApiUtils.getUserIdFromIntent(getIntent()));
-                openSummaryIntent.putExtra("selected_date", year + "-" + month + "-" + dayOfMonth);
+                openSummaryIntent.putExtra("selected_date", year + "-" + (month + 1) + "-" + dayOfMonth);
                 startActivity(openSummaryIntent);
             }
         });
