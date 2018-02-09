@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class WorkoutType {
 
-    @SerializedName("activity_type[id]")
+    @SerializedName("id")
     @Expose
     private int id;
 
-    @SerializedName("activity_type[name]")
+    @SerializedName("name")
     @Expose
     private String name;
 
-    @SerializedName("activity_type[burned_calories]")
+    @SerializedName("burned_calories")
     @Expose
     private int burnedCalories;
 
