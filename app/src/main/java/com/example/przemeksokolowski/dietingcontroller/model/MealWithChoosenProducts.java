@@ -7,15 +7,15 @@ import java.util.List;
 
 public class MealWithChoosenProducts {
 
-    @SerializedName("id")
+    @SerializedName("meal[id]")
     @Expose
     private int id;
 
-    @SerializedName("meal_type")
+    @SerializedName("meal[meal_type]")
     @Expose
     private int mealType;
 
-    @SerializedName("choosen_products")
+    @SerializedName("meal[choosen_products]")
     @Expose
     private List<ChoosenProductsUsedToGetMeals> choosenProducts;
 

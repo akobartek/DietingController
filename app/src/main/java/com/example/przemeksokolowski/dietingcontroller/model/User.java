@@ -5,43 +5,43 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @SerializedName("id")
+    @SerializedName("user[id]")
     @Expose
     private Integer id;
 
-    @SerializedName("login")
+    @SerializedName("user[login]")
     @Expose
     private String login;
 
-    @SerializedName("first_name")
+    @SerializedName("user[first_name]")
     @Expose
     private String firstName;
 
-    @SerializedName("last_name")
+    @SerializedName("user[last_name]")
     @Expose
     private String lastName;
 
-    @SerializedName("email")
+    @SerializedName("user[email]")
     @Expose
     private String email;
 
-    @SerializedName("password")
+    @SerializedName("user[password]")
     @Expose
     private String password;
 
-    @SerializedName("height")
+    @SerializedName("user[height]")
     @Expose
     private Integer height;
 
-    @SerializedName("gender")
+    @SerializedName("user[gender]")
     @Expose
     private Integer gender;
 
-    @SerializedName("birth_date")
+    @SerializedName("user[birth_date]")
     @Expose
     private String birthDate;
 
-    @SerializedName("daily_limit")
+    @SerializedName("user[daily_limit]")
     @Expose
     private Integer dailyLimit;
 

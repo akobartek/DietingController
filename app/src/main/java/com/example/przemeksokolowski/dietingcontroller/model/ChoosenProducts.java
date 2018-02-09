@@ -12,15 +12,15 @@ public class ChoosenProducts {
         this.weight = weight;
     }
 
-    @SerializedName("product_id")
+    @SerializedName("choosen_product[product_id]")
     @Expose
     private int productId;
 
-    @SerializedName("meal_id")
+    @SerializedName("choosen_product[meal_id]")
     @Expose
     private int mealId;
 
-    @SerializedName("weight")
+    @SerializedName("choosen_product[weight]")
     @Expose
     private int weight;
 

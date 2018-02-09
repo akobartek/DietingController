@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginData {
 
-    @SerializedName("id")
+    @SerializedName("session[id]")
     @Expose
     private int id;
 
-    @SerializedName("token")
+    @SerializedName("session[token]")
     @Expose
     private String token;
 
